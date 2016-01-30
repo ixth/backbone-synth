@@ -1,0 +1,33 @@
+{
+  "name": "synth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "release": "git checkout gh-pages && git add index.html build/bundle.js && git commit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ixth/backbone-synth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ixth/backbone-synth/issues"
+  },
+  "homepage": "https://github.com/ixth/backbone-synth#readme",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "css-loader": "^0.23.1",
+    "jquery": "^2.2.0",
+    "script-loader": "^0.6.1",
+    "style-loader": "^0.13.0",
+    "underscore": "^1.8.3",
+    "webpack": "^1.12.12"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.14.1"
+  }
+}

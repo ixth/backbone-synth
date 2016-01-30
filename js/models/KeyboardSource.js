@@ -1,0 +1,45 @@
+var MIDIMessage = require('models/MIDIMessage');
+
+module.exports = Backbone.Model.extend({
+    constructor: function () {
+        Backbone.Model.call(this);
+
+        this.initHandlers();
+    },
+
+    initHandlers: function () {
+        window.addEventListener('keyup', this._onKeyEvent.bind(this));
+        window.addEventListener('keydown', this._onKeyEvent.bind(this));
+    },
+
+    _onKeyEvent: function (e) {
+        var index = this.keyMap(e.keyCode);
+        if (index == null) {
+            return;
+        }
+
+        if (e.shiftKey) {
+            index += 12;
+        }
+
+        if (e.type === 'keydown') {
+            this.trigger('noteOn', new MIDIMessage([
+                MIDIMessage.NOTE_ON,
+                index,
+                0x3f
+            ]));
+        } else if (e.type === 'keyup') {
+            this.trigger('noteOff', new MIDIMessage([
+                MIDIMessage.NOTE_OFF,
+                index,
+                0
+            ]));
+        }
+    },
+
+    keyMap: function (keyCode) {
+        var keys = [90, 83, 88, 68, 67, 86, 71, 66, 72, 78, 74, 77, 188, 76, 190, 186, 191];
+        var index = keys.indexOf(keyCode);
+        return index > -1 ? (12 * 4 + index) : null;
+    }
+});

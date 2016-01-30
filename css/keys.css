@@ -1,43 +1,31 @@
-.keyboard {
-	white-space: nowrap;
-	font: 0/0 a;
-}
-
-.octave {
-	display: inline-block;
-	width: 30px;
-	padding-right: 180px;
-}
-
 .key {
-	position: relative;
-	display: inline-block;
-	vertical-align: top;
-	width: 100%;
-	padding-bottom: 500%;
-	box-shadow: 0 1px 1px #888;
-	z-index: 1;
-}
-.key_black {
-	width: 60%;
-	padding-bottom: 300%;
-	background: #000;
+    display: inline-block;
+    vertical-align: top;
+    width: 30px;
+    height: 150px;
+    box-shadow: 0 1px 1px #888;
+    z-index: 1;
 }
 
-.key_black {
-	margin: 0 -30%;
-}
+    .key_black {
+        width: 18px;
+        height: 90px;
+        background: #000;
+    }
 
-.key_left {
-	margin: 0 -25% 0 -35%;
-}
+    .key_black {
+        margin: 0 -9px;
+    }
 
-.key_right {
-	margin: 0 -35% 0 -25%;
-}
+    .key_left {
+        margin: 0 -7.5px 0 -10.5px;
+    }
 
-.key_active {
-	box-shadow: 0 0 2px 2px #f00;
-	padding-top: 5%;
-	z-index: 0;
-}
+    .key_right {
+        margin: 0 -10.5px 0 -7.5px;
+    }
+
+    .key_active {
+        padding-top: 2px;
+        z-index: 0;
+    }
