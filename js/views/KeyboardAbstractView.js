@@ -1,3 +1,6 @@
+/*
+    Abstract class, almost nothing to see here
+*/
 module.exports = Backbone.View.extend({
     constructor: function () {
         Backbone.View.apply(this, arguments);

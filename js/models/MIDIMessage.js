@@ -1,5 +1,9 @@
 var assert = require ('assert');
 
+/*
+   MIDI message, according to spec
+   https://www.midi.org/specifications/item/table-1-summary-of-midi-message
+*/
 function MIDIMessage(data) {
     assert(data[0] > 0x7f, 'Status code should be more than 0x7f');
 

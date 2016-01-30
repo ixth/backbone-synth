@@ -37,6 +37,9 @@ module.exports = Backbone.Model.extend({
         }
     },
 
+    /*
+        Mapping lower row of keyboard keys to notes
+    */
     keyMap: function (keyCode) {
         var keys = [90, 83, 88, 68, 67, 86, 71, 66, 72, 78, 74, 77, 188, 76, 190, 186, 191];
         var index = keys.indexOf(keyCode);
