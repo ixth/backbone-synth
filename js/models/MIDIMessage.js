@@ -6,8 +6,11 @@ var assert = require ('assert');
  * https://www.midi.org/specifications/item/table-1-summary-of-midi-message
  *
  * @class MIDIMessage
+ * @param {MIDIMessageEvent} e
  */
-function MIDIMessage(data) {
+function MIDIMessage(e) {
+    var data = e.data;
+
     assert(data[0] > 0x7f, 'Status code should be more than 0x7f');
 
     this.raw = data;
@@ -17,6 +20,8 @@ function MIDIMessage(data) {
     this.type = MIDIMessage.getType(data);
 
     this.data = Array.from(data).slice(1);
+
+    this.receivedTime = e.receivedTime;
 }
 
 MIDIMessage.NOTE_OFF = 0x80;

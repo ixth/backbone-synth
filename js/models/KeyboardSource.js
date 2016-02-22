@@ -8,6 +8,7 @@ module.exports = Backbone.Model.extend({
         Backbone.Model.call(this);
 
         this.initHandlers();
+        this.timeOrigin = performance.now();
     },
 
     initHandlers: function () {
@@ -26,17 +27,15 @@ module.exports = Backbone.Model.extend({
         }
 
         if (e.type === 'keydown') {
-            this.trigger('message', new MIDIMessage([
-                MIDIMessage.NOTE_ON,
-                index,
-                0x3f
-            ]));
+            this.trigger('message', new MIDIMessage({
+                data: [MIDIMessage.NOTE_ON, index, 0x3f],
+                receivedTime: performance.now() - this.timeOrigin
+            }));
         } else if (e.type === 'keyup') {
-            this.trigger('message', new MIDIMessage([
-                MIDIMessage.NOTE_OFF,
-                index,
-                0
-            ]));
+            this.trigger('message', new MIDIMessage({
+                data: [MIDIMessage.NOTE_OFF, index, 0],
+                receivedTime: performance.now() - this.timeOrigin
+            }));
         }
     },
 

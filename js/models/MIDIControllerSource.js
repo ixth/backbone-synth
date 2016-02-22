@@ -30,6 +30,6 @@ module.exports = Backbone.Model.extend({
     },
 
     _onMIDIMessage: function (e) {
-        this.trigger('message', new MIDIMessage(e.data));
+        this.trigger('message', new MIDIMessage(e));
     }
 });
