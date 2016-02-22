@@ -7,6 +7,8 @@ var KeyboardWebAudioView = require('./views/KeyboardWebAudioView');
 var KeyboardDOMView = require('./views/KeyboardDOMView');
 var KeyboardConsoleView = require('./views/KeyboardConsoleView');
 
+var KeyboardWriter = require('./models/KeyboardWriter');
+
 // Using collection for event aggregation from multiple sources
 var compositeSource = new Backbone.Collection();
 compositeSource.add(new MIDIControllerSource());
@@ -35,3 +37,12 @@ new KeyboardDOMView({
 new KeyboardConsoleView({ model: compositeSource });
 
 new KeyboardWebAudioView({ model: compositeSource });
+
+var writer = new KeyboardWriter({}, { source: compositeSource });
+
+window.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.keyCode === 83) {
+        e.preventDefault();
+        writer.dump();
+    }
+});

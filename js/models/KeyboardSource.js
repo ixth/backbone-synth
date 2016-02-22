@@ -22,6 +22,10 @@ module.exports = Backbone.Model.extend({
             return;
         }
 
+        if (e.metaKey) {
+            return;
+        }
+
         if (e.shiftKey) {
             index += 12;
         }
