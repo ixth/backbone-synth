@@ -1,3 +1,5 @@
+var MIDIMessage = require('models/MIDIMessage');
+
 /*
     Abstract class, almost nothing to see here
 */
@@ -9,13 +11,19 @@ module.exports = Backbone.View.extend({
     },
 
     handleModelEvents: function () {
-        this.listenTo(this.model, {
-            'noteOn': function (msg) {
-                this.play(msg.data[0]);
-            },
+        this.listenTo(this.model, 'message', function (message) {
+            switch (message.type) {
+                case MIDIMessage.NOTE_ON:
+                    if (message.data[1] === 0) {
+                        this.stop(message.data[0]);
+                        break;
+                    }
+                    this.play(message.data[0]);
+                    break;
 
-            'noteOff': function (msg) {
-                this.stop(msg.data[0]);
+                case MIDIMessage.NOTE_OFF:
+                    this.stop(message.data[0]);
+                    break;
             }
         });
     },

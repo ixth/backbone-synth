@@ -23,13 +23,13 @@ module.exports = Backbone.Model.extend({
         }
 
         if (e.type === 'keydown') {
-            this.trigger('noteOn', new MIDIMessage([
+            this.trigger('message', new MIDIMessage([
                 MIDIMessage.NOTE_ON,
                 index,
                 0x3f
             ]));
         } else if (e.type === 'keyup') {
-            this.trigger('noteOff', new MIDIMessage([
+            this.trigger('message', new MIDIMessage([
                 MIDIMessage.NOTE_OFF,
                 index,
                 0

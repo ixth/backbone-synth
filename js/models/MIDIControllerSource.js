@@ -26,20 +26,7 @@ module.exports = Backbone.Model.extend({
         console.error('MIDIControllerSource: %s', e.message || e);
     },
 
-    _onMIDIEvent: function (e) {
-        var msg = new MIDIMessage(e.data);
-        switch (msg.type) {
-            case MIDIMessage.NOTE_ON:
-                this.trigger('noteOn', msg);
-                break;
-
-            case MIDIMessage.NOTE_OFF:
-                this.trigger('noteOff', msg);
-                break;
-
-            default:
-                this.trigger('unknown', msg);
-                break;
-        }
+    _onMIDIMessage: function (e) {
+        this.trigger('message', new MIDIMessage(e.data));
     }
 });
