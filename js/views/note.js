@@ -1,3 +1,6 @@
+/**
+ * @class Note
+ */
 function Note(context, tone) {
     this._context = context;
 

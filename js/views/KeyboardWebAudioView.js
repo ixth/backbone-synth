@@ -3,6 +3,9 @@ var Note = require('views/note');
 var KeyboardAbstractView = require('views/KeyboardAbstractView');
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 
+/**
+ * @class KeyboardWebAudioView
+ */
 module.exports = KeyboardAbstractView.extend({
     constructor: function () {
         KeyboardAbstractView.apply(this, arguments);

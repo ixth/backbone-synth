@@ -1,8 +1,8 @@
 var MIDIMessage = require('models/MIDIMessage');
 
-/*
-    Abstract class, almost nothing to see here
-*/
+/**
+ * @class KeyboardAbstractView
+ */
 module.exports = Backbone.View.extend({
     constructor: function () {
         Backbone.View.apply(this, arguments);
@@ -28,10 +28,16 @@ module.exports = Backbone.View.extend({
         });
     },
 
+    /**
+     * @abstract
+     */
     play: function (tone) {
         throw 'Not implemented';
     },
 
+    /**
+     * @abstract
+     */
     stop: function (tone) {
         throw 'Not implemented';
     }

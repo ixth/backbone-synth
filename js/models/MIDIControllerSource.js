@@ -1,5 +1,8 @@
 var MIDIMessage = require('models/MIDIMessage');
 
+/**
+ * @class MIDIControllerSource
+ */
 module.exports = Backbone.Model.extend({
     constructor: function () {
         Backbone.Model.call(this);

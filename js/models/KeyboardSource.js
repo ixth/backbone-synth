@@ -1,5 +1,8 @@
 var MIDIMessage = require('models/MIDIMessage');
 
+/**
+ * @class KeyboardSource
+ */
 module.exports = Backbone.Model.extend({
     constructor: function () {
         Backbone.Model.call(this);

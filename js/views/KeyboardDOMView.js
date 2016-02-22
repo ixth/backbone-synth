@@ -2,6 +2,9 @@ var KeyboardAbstractView = require('views/KeyboardAbstractView');
 var $ = require('jquery');
 require('keys.css');
 
+/**
+ * @class KeyboardDOMView
+ */
 module.exports = KeyboardAbstractView.extend({
     className: 'keyboard',
 
