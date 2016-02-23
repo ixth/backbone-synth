@@ -43,12 +43,12 @@ module.exports = Backbone.View.extend({
     },
 
     save: function () {
-        this.constructor._save(this.model.toJSON(), 'log.json');
+        this.constructor._save(this.model.toBlob('smf'), 'test.mid');
     }
 }, {
-    _save: function (data, fileName) {
+    _save: function (blob, fileName) {
         var $a = Backbone.$('<a/>').hide().appendTo(document.body);
-        var url = URL.createObjectURL(new Blob([ JSON.stringify(data) ], { type: 'octet/stream' }));
+        var url = URL.createObjectURL(blob);
 
         $a.attr({ href: url, download: fileName}).get(0).click();
         URL.revokeObjectURL(url);
