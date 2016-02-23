@@ -1,4 +1,5 @@
 var Backbone = require('backbone');
+Backbone.$ = require('jquery');
 
 var MIDIControllerSource = require('./models/MIDIControllerSource');
 var KeyboardSource = require('./models/KeyboardSource');

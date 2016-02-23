@@ -6,6 +6,10 @@
     <title>MIDI</title>
 </head>
 <body>
+    <script id="keyboard" type="text/html">
+        {{#keys}}<span class="{{class}}" data-tone="{{tone}}" title="{{title}}"></span>{{/keys}}
+    </script>
+
     <script src="build/bundle.js"></script>
 </body>
 </html>

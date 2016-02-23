@@ -1,5 +1,6 @@
+var _ = require('lodash');
+var Mustache = require('mustache');
 var KeyboardAbstractView = require('views/KeyboardAbstractView');
-var $ = require('jquery');
 require('keys.css');
 
 /**
@@ -17,17 +18,11 @@ module.exports = KeyboardAbstractView.extend({
     },
 
     render: function () {
-        var from = this.attributes.from,
-            to = this.attributes.to;
-
-        for (var tone = from; tone < to; tone++) {
-            this._renderKey(tone).appendTo(this.$el);
-        }
-
+        this.$el.html(this.template(this.presenter(this.attributes)));
         return this;
     },
 
-    _renderKey: function (tone) {
+    presenter: function (attributes) {
         var mods = {
             'c': '',
             'c#': 'key_black key_left',
@@ -43,20 +38,22 @@ module.exports = KeyboardAbstractView.extend({
             'b': ''
         };
 
-        var note = Object.keys(mods)[tone % 12];
+        var from = attributes.from,
+            to = attributes.to;
 
-        var className = ['key'];
-
-        if (mods[note]) {
-            className.push(mods[note]);
-        }
-
-        return $('<span/>', {
-            'class': className.join(' '),
-            'data-tone': tone,
-            'title': note
-        });
+        return {
+            keys: _.map(_.range(from, to), function (tone) {
+                var note = Object.keys(mods)[tone % 12];
+                return {
+                    'class': mods[note] ? 'key ' + mods[note]: 'key',
+                    'tone': tone,
+                    'title': note
+                };
+            })
+        };
     },
+
+    template: _.partial(Mustache.render, Backbone.$('#keyboard').html()),
 
     getKey: function (tone) {
         return this.$('.key[data-tone=' + tone + ']');
