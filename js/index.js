@@ -3,12 +3,12 @@ Backbone.$ = require('jquery');
 
 var MIDIControllerSource = require('./models/MIDIControllerSource');
 var KeyboardSource = require('./models/KeyboardSource');
+var RecordModel = require('./models/RecordModel');
 
 var KeyboardWebAudioView = require('./views/KeyboardWebAudioView');
 var KeyboardDOMView = require('./views/KeyboardDOMView');
 var KeyboardConsoleView = require('./views/KeyboardConsoleView');
-
-var KeyboardWriter = require('./models/KeyboardWriter');
+var RecordView = require('./views/RecordView');
 
 // Using collection for event aggregation from multiple sources
 var compositeSource = new Backbone.Collection();
@@ -35,15 +35,10 @@ new KeyboardDOMView({
     }
 }).render().$el.appendTo(document.body);
 
+new RecordView({
+    model: new RecordModel(compositeSource)
+}).render().$el.appendTo(document.body);
+
 new KeyboardConsoleView({ model: compositeSource });
 
 new KeyboardWebAudioView({ model: compositeSource });
-
-var writer = new KeyboardWriter({}, { source: compositeSource });
-
-window.addEventListener('keydown', function (e) {
-    if ((e.metaKey || e.ctrlKey) && e.keyCode === 83) {
-        e.preventDefault();
-        writer.dump();
-    }
-});

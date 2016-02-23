@@ -6,6 +6,12 @@
     <title>MIDI</title>
 </head>
 <body>
+    <script id="record" type="text/html">
+        <button class="record__start">start</button>
+        <button class="record__stop">stop</button>
+        <button class="record__save">save</button>
+    </script>
+
     <script id="keyboard" type="text/html">
         {{#keys}}<span class="{{class}}" data-tone="{{tone}}" title="{{title}}"></span>{{/keys}}
     </script>
