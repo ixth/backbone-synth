@@ -1,16 +1,17 @@
 .key {
+    position: relative;
     display: inline-block;
     vertical-align: top;
     width: 30px;
     height: 150px;
     box-shadow: 0 1px 1px #888;
-    z-index: 1;
 }
 
     .key_black {
         width: 18px;
         height: 90px;
         background: #000;
+        z-index: 1;
     }
 
     .key_black {
